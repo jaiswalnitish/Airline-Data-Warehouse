@@ -1,0 +1,29 @@
+Airline-Performance-Data-Warehouse/
+├── Data_Warehouse/
+│   ├── SQL_Scripts/               # Schema creation, stored procedures
+│   │   ├── Create_Database.sql
+│   │   ├── Create_Tables.sql
+│   │   └── SSRS_Stored_Procedures.sql
+│   ├── SSIS_Package/              # Screenshots + .dtsx file (if available)
+│   │   ├── ETL_Workflow.png
+│   │   └── Airlines_SSIS.dtsx
+│   └── Sample_Data/               # Mock CSV samples (avoid raw data)
+│       ├── DimAirport_Sample.csv
+│       └── FactAirline_Sample.csv
+├── Graph_Database/
+│   ├── Neo4J_Scripts/             # Cypher queries for Chinook DB
+│   │   ├── Load_Artist_Album.cypher
+│   │   └── SQL_vs_Cypher_Queries.md
+│   └── Schema_Visualization.png   # Neo4J relationship graph
+├── Reports_Visualizations/
+│   ├── SSRS_Reports/              # PDFs or screenshots
+│   │   ├── OnTime_Performance.pdf
+│   │   └── Airport_Delay_Analysis.pdf
+│   └── Tableau/
+│       ├── Dashboard_Screenshot.png
+│       └── Tableau_Workbook.twb   (if shareable)
+├── Documentation/
+│   ├── README.md                  # Project overview (critical!)
+│   ├── Project_Summary.pdf        # Short report (optional)
+│   └── ER_Diagram.png             # Star schema diagram
+└── .gitignore                     # Exclude large files (e.g., raw data)
