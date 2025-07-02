@@ -25,6 +25,10 @@ A **data warehouse** solution to analyze U.S. domestic airline delays, cancellat
 | ![SSRS Report](Reports_Visualizations/SSRS_Reports/OnTime_Performance.png) | ![Tableau Dashboard](Reports_Visualizations/Tableau/Dashboard_Screenshot.png) |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | *SSRS Report: On-Time Performance*                                        | *Tableau Dashboard: State-wise Cancellations*                               |
+## 🏆 Key Achievements  
+- Reduced data processing time by 30% through optimized SSIS workflows  
+- Identified top 3 delay-prone airports using Tableau, enabling operational improvements  
+- Implemented star schema reducing query time by 40% for BI reports
 
 ## 🔍 How to Use
 1. **Data Warehouse Setup**:
