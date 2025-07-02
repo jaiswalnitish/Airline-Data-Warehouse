@@ -1,0 +1,2831 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/22/2025 5:55:02 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-19SSBTTJ"
+  DTS:CreatorName="LAPTOP-19SSBTTJ\NITS"
+  DTS:DTSID="{F68E8254-552E-4544-85C3-0B0A101EEAD5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="57"
+  DTS:VersionGUID="{2B874054-E87A-4C83-8CF0-0DDF28B0350D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{64474392-2BFA-4E36-84E3-BBE7531B72EF}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\NITS\Desktop\air\Airline_Delay(2023-24).xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{51C81779-FD15-4999-8BB8-5CF051F482A3}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\sande\OneDrive\Data\International Studies\DBS\Classes\B9DA111 DATA STORAGE SOLUTIONS FOR DATA ANALYTICS\Ca01\Aircraft Delay V1\Airline_Delay(2023-24).xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{89DDD4E6-EA7F-4C43-A50F-436B60E0991E}"
+      DTS:ObjectName="LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=Sandy-Surface\SQLEXPRESS;Initial Catalog=Airline_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{89DDD4E6-EA7F-4C43-A50F-436B60E0991E}LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FactFlightImpactAnalysis Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3757E9A8-E20B-4379-BED7-2B8D3D1F675B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FactFlightImpactAnalysis Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Match Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[total_flights]"
+                      cachedDataType="r8"
+                      cachedName="total_flights"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[AirlineKey]"
+                      cachedDataType="i4"
+                      cachedName="AirlineKey"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Match Output].Columns[AirlineKey]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[AirportKey]"
+                      cachedDataType="i4"
+                      cachedName="AirportKey"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Match Output].Columns[AirportKey]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[cancelled_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="cancelled_flight_rate"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[cancelled_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[diverted_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="diverted_flight_rate"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[diverted_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[delayed_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="delayed_flight_rate"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[delayed_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[on_time_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="on_time_flight_rate"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[on_time_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1].Columns[arr_del15]"
+                      cachedDataType="r8"
+                      cachedName="arr_del15"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DateKey]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DateKey]"
+                      name="DateKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Match Output].Columns[DateKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[total_flights]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[total_flights]"
+                      name="total_flights">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[AirlineKey]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[AirlineKey]"
+                      name="AirlineKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Match Output].Columns[AirlineKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[AirportKey]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[AirportKey]"
+                      name="AirportKey">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Match Output].Columns[AirportKey]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[cancelled_flight_rate]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[cancelled_flight_rate]"
+                      name="cancelled_flight_rate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[cancelled_flight_rate]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[diverted_flight_rate]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[diverted_flight_rate]"
+                      name="diverted_flight_rate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[diverted_flight_rate]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[delayed_flight_rate]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[delayed_flight_rate]"
+                      name="delayed_flight_rate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[delayed_flight_rate]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[on_time_flight_rate]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[on_time_flight_rate]"
+                      name="on_time_flight_rate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[on_time_flight_rate]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DelayedFlightCount]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DelayedFlightCount]"
+                      name="DelayedFlightCount">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[total_flights]"
+                      cachedDataType="r8"
+                      cachedName="total_flights"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Invalid_zeroTotalFlight]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Invalid_zeroTotalFlight"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]} == 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">total_flights == 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Valid Rows]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Valid Rows"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[year]"
+                      cachedDataType="r8"
+                      cachedName="year"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[year]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Inputs[Data Conversion Input].Columns[month]"
+                      cachedDataType="r8"
+                      cachedName="month"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[month]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of year]"
+                      name="Copy of year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[year]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of month]"
+                      name="Copy of month"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[month]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Inputs[Data Conversion Input].Columns[carrier]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="carrier"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of carrier]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of carrier]"
+                      name="Copy of carrier"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 2"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Inputs[Data Conversion Input].Columns[airport]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="airport"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[airport]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of airport]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of airport]"
+                      name="Copy of airport"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[airport]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 3"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Inputs[Data Conversion Input].Columns[total_flights]"
+                      cachedDataType="r8"
+                      cachedName="total_flights"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[total_flights]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Inputs[Data Conversion Input].Columns[DelayedFlightCount]"
+                      cachedDataType="r8"
+                      cachedName="DelayedFlightCount"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DelayedFlightCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output].Columns[Copy of total_flights]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output].Columns[Copy of total_flights]"
+                      name="Copy of total_flights"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[total_flights]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output].Columns[Copy of DelayedFlightCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output].Columns[Copy of DelayedFlightCount]"
+                      name="Copy of DelayedFlightCount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DelayedFlightCount]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[arr_del15]"
+                      cachedDataType="r8"
+                      cachedName="arr_del15"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[arr_cancelled]"
+                      cachedDataType="r8"
+                      cachedName="arr_cancelled"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_cancelled]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[arr_diverted]"
+                      cachedDataType="r8"
+                      cachedName="arr_diverted"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_diverted]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[arr_flights]"
+                      cachedDataType="r8"
+                      cachedName="arr_flights"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_flights]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]"
+                      name="total_flights"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_flights]} + #{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]} + #{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_cancelled]} + #{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_diverted]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">arr_flights + arr_del15 + arr_cancelled + arr_diverted</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input].Columns[arr_cancelled]"
+                      cachedDataType="r8"
+                      cachedName="arr_cancelled"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_cancelled]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input].Columns[total_flights]"
+                      cachedDataType="r8"
+                      cachedName="total_flights"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input].Columns[arr_diverted]"
+                      cachedDataType="r8"
+                      cachedName="arr_diverted"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_diverted]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input].Columns[arr_del15]"
+                      cachedDataType="r8"
+                      cachedName="arr_del15"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input].Columns[arr_flights]"
+                      cachedDataType="r8"
+                      cachedName="arr_flights"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_flights]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[cancelled_flight_rate]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[cancelled_flight_rate]"
+                      name="cancelled_flight_rate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_cancelled]} * 1.0 / #{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(arr_cancelled * 1.0 / total_flights)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[diverted_flight_rate]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[diverted_flight_rate]"
+                      name="diverted_flight_rate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_diverted]} * 1.0 / #{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(arr_diverted * 1.0 / total_flights)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[delayed_flight_rate]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[delayed_flight_rate]"
+                      name="delayed_flight_rate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]} * 1.0 / #{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(arr_del15 * 1.0 / total_flights)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[on_time_flight_rate]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output].Columns[on_time_flight_rate]"
+                      name="on_time_flight_rate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_flights]} * 1.0 / #{Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[total_flights]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(arr_flights * 1.0 / total_flights)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimAirline Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAirline]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAirline]) [refTable]
+where [refTable].[AirlineCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AirlineKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AirlineCode" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="AirlineName" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of carrier]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Inputs[Lookup Input].Columns[Copy of carrier]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of carrier"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of carrier]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">AirlineCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Match Output].Columns[AirlineKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Match Output].Columns[AirlineKey]"
+                      name="AirlineKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AirlineKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimAirport Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAirport]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAirport]) [refTable]
+where [refTable].[AirportCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AirportKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AirportCode" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="AirportName" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="City" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="States" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of airport]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Inputs[Lookup Input].Columns[Copy of airport]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of airport"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of airport]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">AirportCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Match Output].Columns[AirportKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Match Output].Columns[AirportKey]"
+                      name="AirportKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AirportKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimDate Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimDate]) [refTable]
+where [refTable].[Year_] = ? and [refTable].[Month_] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year_" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Month_" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Quarter_" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName_" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of year]};#{Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of month]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input].Columns[Copy of year]"
+                      cachedDataType="i4"
+                      cachedName="Copy of year"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of year]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Year_</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input].Columns[Copy of month]"
+                      cachedDataType="i4"
+                      cachedName="Copy of month"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of month]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Month_</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Match Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Match Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_flights]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_flights]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_flights]"
+                      name="arr_flights"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_del15]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_del15]"
+                      name="arr_del15"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier_ct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier_ct]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier_ct]"
+                      name="carrier_ct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[weather_ct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[weather_ct]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[weather_ct]"
+                      name="weather_ct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[nas_ct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[nas_ct]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[nas_ct]"
+                      name="nas_ct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[security_ct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[security_ct]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[security_ct]"
+                      name="security_ct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[late_aircraft_ct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[late_aircraft_ct]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[late_aircraft_ct]"
+                      name="late_aircraft_ct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_cancelled]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_cancelled]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_cancelled]"
+                      name="arr_cancelled"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_diverted]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_diverted]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_diverted]"
+                      name="arr_diverted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_delay]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_delay]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[arr_delay]"
+                      name="arr_delay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier_delay]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier_delay]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier_delay]"
+                      name="carrier_delay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[weather_delay]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[weather_delay]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[weather_delay]"
+                      name="weather_delay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[nas_delay]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[nas_delay]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[nas_delay]"
+                      name="nas_delay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[security_delay]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[security_delay]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[security_delay]"
+                      name="security_delay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[late_aircraft_delay]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[late_aircraft_delay]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[late_aircraft_delay]"
+                      name="late_aircraft_delay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[year]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[year]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[year]"
+                      name="year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[month]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[month]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[month]"
+                      name="month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier]"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier]"
+                      name="carrier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier_name]"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[carrier_name]"
+                      name="carrier_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[airport]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[airport]"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[airport]"
+                      name="airport"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[airport_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[airport_name]"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[airport_name]"
+                      name="airport_name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[year]"
+                      dataType="r8"
+                      name="year" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[month]"
+                      dataType="r8"
+                      name="month" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier]"
+                      dataType="wstr"
+                      length="255"
+                      name="carrier" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="carrier_name" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[airport]"
+                      dataType="wstr"
+                      length="255"
+                      name="airport" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[airport_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="airport_name" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_flights]"
+                      dataType="r8"
+                      name="arr_flights" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_del15]"
+                      dataType="r8"
+                      name="arr_del15" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier_ct]"
+                      dataType="r8"
+                      name="carrier_ct" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[weather_ct]"
+                      dataType="r8"
+                      name="weather_ct" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[nas_ct]"
+                      dataType="r8"
+                      name="nas_ct" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[security_ct]"
+                      dataType="r8"
+                      name="security_ct" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[late_aircraft_ct]"
+                      dataType="r8"
+                      name="late_aircraft_ct" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_cancelled]"
+                      dataType="r8"
+                      name="arr_cancelled" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_diverted]"
+                      dataType="r8"
+                      name="arr_diverted" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[arr_delay]"
+                      dataType="r8"
+                      name="arr_delay" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[carrier_delay]"
+                      dataType="r8"
+                      name="carrier_delay" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[weather_delay]"
+                      dataType="r8"
+                      name="weather_delay" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[nas_delay]"
+                      dataType="r8"
+                      name="nas_delay" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[security_delay]"
+                      dataType="r8"
+                      name="security_delay" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[late_aircraft_delay]"
+                      dataType="r8"
+                      name="late_aircraft_delay" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_flights]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_flights]"
+                      name="arr_flights" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_del15]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_del15]"
+                      name="arr_del15" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier_ct]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier_ct]"
+                      name="carrier_ct" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[weather_ct]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[weather_ct]"
+                      name="weather_ct" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[nas_ct]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[nas_ct]"
+                      name="nas_ct" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[security_ct]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[security_ct]"
+                      name="security_ct" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[late_aircraft_ct]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[late_aircraft_ct]"
+                      name="late_aircraft_ct" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_cancelled]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_cancelled]"
+                      name="arr_cancelled" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_diverted]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_diverted]"
+                      name="arr_diverted" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_delay]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[arr_delay]"
+                      name="arr_delay" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier_delay]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier_delay]"
+                      name="carrier_delay" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[weather_delay]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[weather_delay]"
+                      name="weather_delay" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[nas_delay]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[nas_delay]"
+                      name="nas_delay" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[security_delay]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[security_delay]"
+                      name="security_delay" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[late_aircraft_delay]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[late_aircraft_delay]"
+                      name="late_aircraft_delay" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[year]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[year]"
+                      name="year" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[month]"
+                      dataType="r8"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[month]"
+                      name="month" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier]"
+                      name="carrier" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[carrier_name]"
+                      name="carrier_name" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[airport]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[airport]"
+                      name="airport" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[airport_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[airport_name]"
+                      name="airport_name" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactAirlineAnalysis]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-19SSBTTJ\SQLEXPRESS.Airline_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of total_flights]"
+                      cachedDataType="i4"
+                      cachedName="Copy of total_flights"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalFlight]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output].Columns[Copy of total_flights]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AirlineKey]"
+                      cachedDataType="i4"
+                      cachedName="AirlineKey"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AirlineKey]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[AirlineKey]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AirportKey]"
+                      cachedDataType="i4"
+                      cachedName="AirportKey"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AirportKey]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[AirportKey]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[cancelled_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="cancelled_flight_rate"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CancelledFlightRate]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[cancelled_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[diverted_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="diverted_flight_rate"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DivertedFlightRate]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[diverted_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[delayed_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="delayed_flight_rate"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DelayedFlightRate]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[delayed_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[on_time_flight_rate]"
+                      cachedDataType="r8"
+                      cachedName="on_time_flight_rate"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OnTimeFlightRate]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1].Columns[on_time_flight_rate]" />
+                    <inputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of DelayedFlightCount]"
+                      cachedDataType="i4"
+                      cachedName="Copy of DelayedFlightCount"
+                      externalMetadataColumnId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DelayedFlight]"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output].Columns[Copy of DelayedFlightCount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AirlineKey]"
+                      dataType="i4"
+                      name="AirlineKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AirportKey]"
+                      dataType="i4"
+                      name="AirportKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalFlight]"
+                      dataType="i4"
+                      name="TotalFlight" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DelayedFlightRate]"
+                      dataType="r8"
+                      name="DelayedFlightRate" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CancelledFlightRate]"
+                      dataType="r8"
+                      name="CancelledFlightRate" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DivertedFlightRate]"
+                      dataType="r8"
+                      name="DivertedFlightRate" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OnTimeFlightRate]"
+                      dataType="r8"
+                      name="OnTimeFlightRate" />
+                    <externalMetadataColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DelayedFlight]"
+                      dataType="i4"
+                      name="DelayedFlight" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Aggregate Output 1]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Inputs[Data Conversion Input]"
+              name="Aggregate Output 1"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Outputs[Aggregate Output 1]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output1]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output2]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output3]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate.Inputs[Aggregate Input 1]"
+              name="Derived Column Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Derived Column Output1]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Excel Source Output]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1.Inputs[Data Conversion Input]"
+              name="Lookup Match Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Lookup Match Output1]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2.Inputs[Data Conversion Input]"
+              name="Lookup Match Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Lookup Match Output2]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Valid Rows]"
+              endId="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1.Inputs[Derived Column Input]"
+              name="Valid Rows"
+              startId="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split.Outputs[Valid Rows]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="274.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task"
+          TopLeft="200.624991031364,11.631578819656" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FactFlightImpactAnalysis Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Conditional Split"
+          TopLeft="357.812484004535,469.342104831189" />
+        <NodeLayout
+          Size="168,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 2"
+          TopLeft="287.499987147749,328.491225861501" />
+        <NodeLayout
+          Size="165.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column 1"
+          TopLeft="77.3437465424651,571.973682651683" />
+        <NodeLayout
+          Size="168,48.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup"
+          TopLeft="283.124987343327,401.929822307655" />
+        <NodeLayout
+          Size="168,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 1"
+          TopLeft="287.499987147749,178.578945407659" />
+        <NodeLayout
+          Size="174.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination"
+          TopLeft="327.343735366595,635.679822129233" />
+        <NodeLayout
+          Size="158.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup"
+          TopLeft="292.499986924232,87.5789464068215" />
+        <NodeLayout
+          Size="142.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source"
+          TopLeft="188.749991562218,12.3157893384593" />
+        <NodeLayout
+          Size="156,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Derived Column"
+          TopLeft="145.312493504025,471.995611753167" />
+        <NodeLayout
+          Size="166.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup"
+          TopLeft="286.249987203628,253.98245357859" />
+        <NodeLayout
+          Size="158.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion"
+          TopLeft="386.87498270534,11.631578819656" />
+        <NodeLayout
+          Size="129.5,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Aggregate"
+          TopLeft="312.499986030162,564.495611396323" />
+        <NodeLayout
+          Size="168,42.5"
+          Id="Package\FactFlightImpactAnalysis Data Flow Task\Data Conversion 3"
+          TopLeft="498.437477718108,556.995613180541" />
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Valid Rows]"
+          TopLeft="436.479150671202,512.008771497856">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-276.46873746207,59.9649111538272"
+              Start="0,0"
+              End="-276.46873746207,52.4649111538272">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9824555769136" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9824555769136"
+                    Point2="0,29.9824555769136"
+                    Point3="-4,29.9824555769136" />
+                  <mssgle:LineSegment
+                    End="-272.46873746207,29.9824555769136" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-272.46873746207,29.9824555769136"
+                    Point2="-276.46873746207,29.9824555769136"
+                    Point3="-276.46873746207,33.9824555769136" />
+                  <mssgle:LineSegment
+                    End="-276.46873746207,52.4649111538272" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-163.150130449785,34.9824555769136,49.8315234375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Lookup Match Output2]"
+          TopLeft="283.124987343327,426.263155640988">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-59.8124938393014,45.732456112179"
+              Start="0,0"
+              End="-59.8124938393014,38.232456112179">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-55.8124938393014,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-55.8124938393014,0"
+                    Point2="-59.8124938393014,0"
+                    Point3="-59.8124938393014,4" />
+                  <mssgle:LineSegment
+                    End="-59.8124938393014,38.232456112179" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-108.003880558051,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Lookup Match Output1]"
+          TopLeft="370.541653842355,296.649120245256">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.8421056162452"
+              Start="0,0"
+              End="0,24.3421056162452">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3421056162452" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,6.3663653081226,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="371.666653702657,130.245613073488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.3333323341713"
+              Start="0,0"
+              End="0,40.8333323341713">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.8333323341713" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.6119786670857,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="331.416658228884,33.307017412391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.458324476456,0"
+              Start="0,0"
+              End="47.958324476456,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.958324476456,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Derived Column Output1]"
+          TopLeft="301.312493504025,492.002191625512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.49999050051,0"
+              Start="0,0"
+              End="48.99999050051,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.99999050051,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="242.677079875798,589.567980357337">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69.8229061543634,0"
+              Start="0,0"
+              End="62.3229061543634,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="62.3229061543634,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output3]"
+          TopLeft="582.437477718108,599.662279847208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-167.76040901818,36.0175422820254"
+              Start="0,0"
+              End="-167.76040901818,28.5175422820254">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0087711410127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0087711410127"
+                    Point2="0,18.0087711410127"
+                    Point3="-4,18.0087711410127" />
+                  <mssgle:LineSegment
+                    End="-163.76040901818,18.0087711410127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-163.76040901818,18.0087711410127"
+                    Point2="-167.76040901818,18.0087711410127"
+                    Point3="-167.76040901818,22.0087711410127" />
+                  <mssgle:LineSegment
+                    End="-167.76040901818,28.5175422820254" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output2]"
+          TopLeft="369.312487245538,371.157892528168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.7719297794865"
+              Start="0,0"
+              End="0,23.2719297794865">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2719297794865" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output1]"
+          TopLeft="370.541653842355,221.245612074326">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.7368415042635"
+              Start="0,0"
+              End="0,25.2368415042635">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.2368415042635" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Data Conversion Output]"
+          TopLeft="466.208316038674,54.2982454863226">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-94.3749957811089,33.2807009204989"
+              Start="0,0"
+              End="-94.3749957811089,25.7807009204989">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.6403504602494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.6403504602494"
+                    Point2="0,16.6403504602494"
+                    Point3="-4,16.6403504602494" />
+                  <mssgle:LineSegment
+                    End="-90.3749957811089,16.6403504602494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-90.3749957811089,16.6403504602494"
+                    Point2="-94.3749957811089,16.6403504602494"
+                    Point3="-94.3749957811089,20.6403504602494" />
+                  <mssgle:LineSegment
+                    End="-94.3749957811089,25.7807009204989" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactFlightImpactAnalysis Data Flow Task.Paths[Aggregate Output 1]"
+          TopLeft="441.833319363495,582.078945621766">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.6041583546131,0"
+              Start="0,0"
+              End="49.1041583546131,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.1041583546131,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactFlightImpactAnalysis Data Flow Task\DimAirport Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimAirport]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactFlightImpactAnalysis Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactFlightImpactAnalysis Data Flow Task\DimDate Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactFlightImpactAnalysis Data Flow Task\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactFlightImpactAnalysis Data Flow Task\DimAirline Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimAirline]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
