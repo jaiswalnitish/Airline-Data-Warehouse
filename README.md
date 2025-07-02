@@ -22,7 +22,7 @@ A **data warehouse** solution to analyze U.S. domestic airline delays, cancellat
 - **Insights**: Identified top cancellation states, busiest airports, and seasonal delay patterns.
 
 ## 📊 Sample Output
-| ![SSRS Report](SSRS_Reports PDF/tableau_dashboard.jpg) | ![Tableau Dashboard](Airline_SSRS/tableau_dashboard.jpg) |
+| ![SSRS Report Sample](Airline_SSRS/SSRS_report.jpg) | ![Tableau Dashboard](Airline_SSRS/tableau_dashboard.jpg) |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | *SSRS Report: On-Time Performance*                                        | *Tableau Dashboard: State-wise Cancellations*                               |
 ## 🏆 Key Achievements  
